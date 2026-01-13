@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
+import { parseGithubRepoUrl } from "@/lib/utils";
 
 export default function NewWikiPage() {
   const router = useRouter();
@@ -26,12 +27,10 @@ export default function NewWikiPage() {
 
     try {
       // Parse GitHub repo URL
-      const match = formData.repoUrl.match(/github\.com\/([^\/]+)\/([^\/]+)/);
-      if (!match) {
+      const parsed = parseGithubRepoUrl(formData.repoUrl);
+      if (!parsed) {
         throw new Error("Invalid GitHub repository URL");
       }
-
-      const [, repoOwner, repoName] = match;
 
       const response = await fetch("/api/wikis", {
         method: "POST",
@@ -42,8 +41,8 @@ export default function NewWikiPage() {
           name: formData.name,
           description: formData.description,
           repoUrl: formData.repoUrl,
-          repoOwner,
-          repoName: repoName.replace(/\.git$/, ""),
+          repoOwner: parsed.repoOwner,
+          repoName: parsed.repoName,
           isPublic: formData.isPublic,
         }),
       });

@@ -9,7 +9,8 @@ import remarkGfm from "remark-gfm";
 import { BookOpen, Home } from "lucide-react";
 
 async function getWikiContent(owner: string, repo: string) {
-  // In production, this would fetch from GitHub API
+  // TODO: Implement GitHub API integration to fetch actual content from /docs folder
+  // See: https://docs.github.com/en/rest/repos/contents
   // For now, return a placeholder
   return `# Welcome to ${owner}/${repo} Wiki
 
