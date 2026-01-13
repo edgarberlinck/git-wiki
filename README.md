@@ -15,8 +15,8 @@ A modern Wiki generator for GitHub repositories. Create beautiful documentation 
 
 - **Framework**: Next.js 15 (App Router)
 - **UI**: React 19 + Tailwind CSS + ShadCN UI
-- **Authentication**: NextAuth.js v5 (GitHub Provider)
-- **Database**: PostgreSQL with Prisma 7
+- **Authentication**: NextAuth.js v4 (GitHub Provider)
+- **Database**: PostgreSQL with Prisma ORM
 - **Testing**: Vitest
 - **Language**: TypeScript
 
