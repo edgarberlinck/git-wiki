@@ -11,6 +11,9 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GITHUB_SECRET || "",
       authorization: {
         params: {
+          // Using 'repo' scope to access both public and private repositories
+          // This is needed to read documentation from private repos when authorized
+          // Users can restrict access through the OAuth consent screen
           scope: "read:user user:email repo",
         },
       },

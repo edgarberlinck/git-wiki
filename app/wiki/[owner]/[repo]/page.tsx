@@ -60,6 +60,8 @@ export default async function WikiPage({
   const { owner, repo } = await params;
   const session = await getServerSession(authOptions);
 
+  // Using findFirst to get the first wiki for this repo
+  // Multiple users can create wikis for the same repository
   const wiki = await prisma.wiki.findFirst({
     where: {
       repoOwner: owner,
